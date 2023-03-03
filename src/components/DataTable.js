@@ -37,7 +37,6 @@ function DataTable() {
       <DataGrid
         rows={rows}
         columns={columns}
-        columnBuffer={true}
         pageSize={4}
         rowsPerPageOptions={[2, 4, 5, 10]}
         disableSelectionOnClick

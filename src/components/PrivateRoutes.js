@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 function PrivateRoutes() {
-  const [auth] = useState(true);
+  const [auth] = useState(false);
   return auth ? <Outlet /> : <Navigate to={"/login"} replace />;
 }
 
