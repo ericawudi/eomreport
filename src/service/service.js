@@ -1,6 +1,7 @@
 //set-up axios
 
 import axios from "axios";
+import moment from "moment";
 import Cookies from "universal-cookie";
 import { Constants as K } from "./constant";
 
@@ -36,29 +37,60 @@ export function Login(username, password) {
     password,
   })
     .then((resp) => {
-      cookies.set(K.App.API_TOKEN, resp.authToken, {
-        path: "/",
-      });
+      if (resp.data?.status === 200) {
+        cookies.set(K.App.API_TOKEN, resp.data?.authToken, {
+          path: "/",
+        });
+      }
       return resp;
     })
     .catch((error) => {
-      console.log({ error });
-      return error;
+      return { data: { message: error?.message } };
     });
+  return resp;
 }
 
-// Get votes by category
-export const GetClientData = async (username, date) => {
+// Get server 3 data
+export const GetS3ClientData = async (username, date) => {
   const resp = await APIAxios.post("/index.php", {
     username: username,
     date: date,
   })
     .then((resp) => {
-      console.log({ resp });
-      return resp;
+      return { data: resp.data?.data, status: resp.data?.status };
     })
-    .catch((err) => {
-      console.log({ errorrr: err });
-      return err;
+    .catch((error) => {
+      return { data: { message: error?.message } };
     });
+  return resp;
+};
+
+// Get server 9 data
+export const GetS9ClientData = async (username, date) => {
+  const start_date = moment(date).format("YYYY-MM-DD");
+  const end_date = moment(start_date).add(1, "month").format("YYYY-MM-DD");
+  const data = JSON.stringify({
+    user: username,
+    start_date: start_date,
+    end_date: end_date,
+  });
+
+  const config = {
+    method: "post",
+    url: "https://logs.nalosolutions.com/netreport/test.php",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  const resp = axios(config)
+    .then(function (response) {
+      return { data: response.data, status: response.status };
+    })
+    .catch(function (error) {
+      return { data: { message: error?.message } };
+    });
+
+  return resp;
 };

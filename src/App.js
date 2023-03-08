@@ -3,17 +3,25 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route element={<PrivateRoutes />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/:username/:date/" element={<Dashboard />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/:resellerUsername/:resellerUserId/:date/"
+            element={<Dashboard />}
+          />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </QueryClientProvider>
   );
 }
 

@@ -1,37 +1,120 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDataContext } from "./ContextProvider";
-import DoughnutChart from "./DoughnuChart";
+import DoughnutChart from "./DoughnutChart";
 import DataTable from "./DataTable";
-import VerticalChartBar from "./VerticalChartBar";
 import { useParams } from "react-router-dom";
-import { GetClientData } from "../service/service";
+import { GetS3ClientData, GetS9ClientData } from "../service/service";
+import { Grid } from "@mui/material";
+import Notification from "./Notification";
 
 function MainPageComponent() {
-  const { monthName } = useDataContext();
+  const { monthName, dateToSend } = useDataContext();
+  const [open, setOpen] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
-  const [doughnutData, setDoughnutData] = useState(null);
-  const [lineData, setLineData] = useState(null);
-  const [tableData, setTableData] = useState(null);
-
-  const { username, date } = useParams();
-
-  const getClientData = async () => {
-    const response = await GetClientData(username, date);
-    // console.log({ response });
+  const handleClose = (_event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
   };
+
+  // server 3 values
+  const [sv3Data, setSv3Data] = useState([]);
+  const [totalSv3PageCount, setTotalSv3PageCount] = useState("");
+
+  //server 9 values
+  const [sv9Data, setSv9Data] = useState([]);
+  const [totalSv9PageCount, setTotalSv9PageCount] = useState("");
+
+  const { resellerUserId, resellerUsername } = useParams();
+  const getClientData = useCallback(async () => {
+    if (
+      resellerUserId === undefined ||
+      resellerUsername === undefined ||
+      resellerUserId.trim() === "" ||
+      resellerUsername.trim() === ""
+    ) {
+      return;
+    }
+    const [s3Data, s9Data] = await Promise.allSettled([
+      GetS3ClientData(resellerUsername, dateToSend),
+      GetS9ClientData(resellerUserId, dateToSend),
+    ]);
+    // for server 3
+    if (s3Data.status === "fulfilled") {
+      const { data, status } = s3Data.value;
+      if (status === 200) {
+        setTotalSv3PageCount(
+          `Total Sent to Telco Page Count: ${data.totalPageCount}`
+        );
+        setSv3Data(data.breakdown);
+      } else {
+        setNotificationMessage(`Server 3 ${data?.message}`);
+        setOpen(true);
+      }
+    }
+
+    //for server 9
+    if (s9Data.status === "fulfilled") {
+      const { data, status } = s9Data.value;
+      if (status === 200) {
+        const totalPageCount = data.reduce((result, currentVal) => {
+          return result + parseInt(currentVal.page_count);
+        }, 0);
+        setTotalSv9PageCount(`Total On Portal: ${totalPageCount}`);
+        setSv9Data(data);
+      } else {
+        setNotificationMessage(`Server 9 ${data?.message}`);
+        setOpen(true);
+      }
+    }
+  }, [resellerUsername, resellerUserId, dateToSend]);
 
   useEffect(() => {
     getClientData();
-  }, [username, date]);
+  }, [getClientData]);
 
   return (
     <div id="detail">
       <h1>{monthName}</h1>
-      Doughnut Chart
-      <DoughnutChart />
-      <DataTable />
-      <VerticalChartBar />
+      <h2>{totalSv3PageCount}</h2>
+      <Grid
+        container
+        spacing={5}
+        justifyContent="space-between"
+        marginBottom={10}
+      >
+        <Grid item md={6}>
+          <DoughnutChart data={sv3Data} />
+        </Grid>
+        <Grid item md={6}>
+          <DataTable data={sv3Data} />
+        </Grid>
+      </Grid>
+
+      <h2>{totalSv9PageCount}</h2>
+      <Grid
+        container
+        spacing={5}
+        justifyContent="space-between"
+        marginBottom={10}
+      >
+        <Grid item md={6}>
+          <DoughnutChart data={sv9Data} />
+        </Grid>
+        <Grid item md={6}>
+          <DataTable data={sv9Data} />
+        </Grid>
+      </Grid>
+      <Notification
+        severity="error"
+        message={notificationMessage}
+        openNotification={open}
+        handleClose={handleClose}
+        vertical="top"
+        horizontal="right"
+      />
     </div>
   );
 }

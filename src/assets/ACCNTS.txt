@@ -1,0 +1,24 @@
+USERNAME                    RESELLER_USERNAME                   RESELLER_USERID
+==================================================================================
+fidelitybank_api      =>    Fidelity_Resl_fidelitybank_api       => 0020173
+na1-atc               =>    Resl_Nalo_na1-atc                    => 0033686
+usrinvendis           =>    Resl_Nalo_usrinvendis                => 0036444
+AsaSMS                =>    Telos_Resl_AsaSMS                    => 0035932
+AsaSMS2               =>    Telos_Resl_Asasms2                   => 0357599
+na1-FABL              =>    Resl_Nalo_na1-FABL                   => 0000383
+FABL                  =>    FAB_Resl_FABL                        => 0001090
+na1-fabl              =>    FAB_Resl_na1-fabl                    => 0010113
+na1-fabltd            =>    FAB_Resl_na1-fabltd                  => 0010114
+boafrica              =>    BOA_Resl_boafrica                    => 0011117
+boafrica              =>    Resl_Nalo_boafrica                   => 0036979
+bank_of_africa        =>    BOA_Resl_bank_of_africa              => 0001191
+stargroupapp          =>    Cell_resl_stargroupapp               => 0002121
+cellulantPortalUser   =>    Cell_resl_cellulantPortalUser        => 0000029
+Rohi_Chapel           =>    Cell_resl_Rohi_Chapel                => 0021597
+JSO                   =>    Resl_Nalo_JSO                        => 0035021
+NIC                   =>    Sipisoft_Resl_nic                    => 0036926
+
+ElijahWachu           =>    Resl_Nalo_ElijahWachu                => 0032140
+ElijahWachu           =>    SokoC_Resl_ElijahWachu               => 0001598
+prudentialbank        =>    Resl_Prud_prudentialbank             => 0638257
+prudentialbankgh      =>    Resl_Prud_prudentialbankgh           => 0638363

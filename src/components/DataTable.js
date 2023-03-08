@@ -1,4 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
+import { useState, useEffect } from "react";
+import { convertToTableData } from "../service/helper";
 
 const columns = [
   { field: "id", headerName: "ID", hide: true, sortable: false },
@@ -8,39 +10,43 @@ const columns = [
     disabled: true,
     sortable: false,
     disableColumnMenu: true,
+    width: 150,
   },
   {
-    field: "counts3",
-    headerName: "Count s3",
+    field: "smsCount",
+    headerName: "SMS Count",
+    disabled: true,
+    hide: true,
+    sortable: false,
+    disableColumnMenu: true,
+    width: 150,
+  },
+  {
+    field: "pageCount",
+    headerName: "Page Count",
     disabled: true,
     sortable: false,
     disableColumnMenu: true,
   },
-  {
-    field: "counts8",
-    headerName: "Count s8",
-    disabled: true,
-    sortable: false,
-    disableColumnMenu: true,
-  },
-];
-const rows = [
-  { id: 1, network: "MTN", counts3: 23, counts8: 25 },
-  { id: 2, network: "AIRTELTIGO", counts3: 213, counts8: 254 },
-  { id: 3, network: "VODAFONE", counts3: 587, counts8: 543 },
-  { id: 4, network: "FOREIGN", counts3: 19, counts8: 14 },
 ];
 
-function DataTable() {
+function DataTable({ data }) {
+  const [rows, setRows] = useState(data);
+  const [rowNumber, setRowNumber] = useState(6);
+  useEffect(() => {
+    setRows(convertToTableData(data));
+  }, [data]);
+
   return (
-    <div style={{ height: 320, width: "100%" }}>
+    <div style={{ height: 420 }}>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={4}
-        rowsPerPageOptions={[2, 4, 5, 10]}
+        pageSize={rowNumber}
+        rowsPerPageOptions={[5, 6, 10]}
         disableSelectionOnClick
         components={{}}
+        onPageSizeChange={(newNumber) => setRowNumber(newNumber)}
       />
     </div>
   );

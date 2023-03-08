@@ -1,0 +1,194 @@
+[
+    {
+        "id": 1,
+        "username": "fidelitybank_api",
+        "resellerUserId": "0020173",
+        "resellerUsername": "Fidelity_Resl_fidelitybank_api"
+    },
+    {
+        "id": 2,
+        "username": "na1-atc",
+        "resellerUserId": "0033686",
+        "resellerUsername": "Resl_Nalo_na1-atc"
+    },
+    {
+        "id": 3,
+        "username": "usrinvendis",
+        "resellerUserId": "0036444",
+        "resellerUsername": "Resl_Nalo_usrinvendis"
+    },
+    {
+        "id": 4,
+        "username": "AsaSMS",
+        "resellerUserId": "0035932",
+        "resellerUsername": "Telos_Resl_AsaSMS"
+    },
+    {
+        "id": 5,
+        "username": "AsaSMS2",
+        "resellerUserId": "0357599",
+        "resellerUsername": "Telos_Resl_Asasms2"
+    },
+    {
+        "id": 6,
+        "username": " na1-FABL*",
+        "resellerUserId": "0000383",
+        "resellerUsername": "Resl_Nalo_na1-FABL"
+    },
+    {
+        "id": 7,
+        "username": "FABL",
+        "resellerUserId": "0001090",
+        "resellerUsername": "FAB_Resl_FABL"
+    },
+    {
+        "id": 8,
+        "username": "na1-fabl",
+        "resellerUserId": "0010113",
+        "resellerUsername": "FAB_Resl_na1-fabl"
+    },
+    {
+        "id": 9,
+        "username": "na1-fabltd",
+        "resellerUserId": "0010114",
+        "resellerUsername": "FAB_Resl_na1-fabltd"
+    },
+    {
+        "id": 10,
+        "username": "boafrica",
+        "resellerUserId": "0011117",
+        "resellerUsername": "BOA_Resl_boafrica"
+    },
+    {
+        "id": 11,
+        "username": "boafrica*",
+        "resellerUserId": "0036979",
+        "resellerUsername": "Resl_Nalo_boafrica"
+    },
+    {
+        "id": 12,
+        "username": "bank_of_africa",
+        "resellerUserId": "0001191",
+        "resellerUsername": "BOA_Resl_bank_of_africa"
+    },
+    {
+        "id": 13,
+        "username": "stargroupapp",
+        "resellerUserId": "0002121",
+        "resellerUsername": "Cell_resl_stargroupapp"
+    },
+    {
+        "id": 14,
+        "username": "cellulantPortalUser",
+        "resellerUserId": "0000029",
+        "resellerUsername": "Cell_resl_cellulantPortalUser"
+    },
+    {
+        "id": 15,
+        "username": "Rohi_Chapel",
+        "resellerUserId": "0021597",
+        "resellerUsername": "Cell_resl_Rohi_Chapel"
+    },
+    {
+        "id": 16,
+        "username": "JSO",
+        "resellerUserId": "0035021",
+        "resellerUsername": "Resl_Nalo_JSO"
+    },
+    {
+        "id": 17,
+        "username": "NIC",
+        "resellerUserId": "0036926",
+        "resellerUsername": "Sipisoft_Resl_nic"
+    },
+    {
+        "id": 18,
+        "username": "ElijahWachu*",
+        "resellerUserId": "0032140",
+        "resellerUsername": "Resl_Nalo_ElijahWachu"
+    },
+    {
+        "id": 19,
+        "username": "ElijahWachu",
+        "resellerUserId": "0001598",
+        "resellerUsername": "SokoC_Resl_ElijahWachu"
+    },
+    {
+        "id": 20,
+        "username": "prudentialbank",
+        "resellerUserId": "0638257",
+        "resellerUsername": "Resl_Prud_prudentialbank"
+    },
+    {
+        "id": 21,
+        "username": "prudentialbankgh",
+        "resellerUserId": "0638363",
+        "resellerUsername": "Resl_Prud_prudentialbankgh"
+    },
+    {
+        "id": 22,
+        "username": "na1-ecobank",
+        "resellerUserId": "0000585",
+        "resellerUsername": "Eco_Resl_na1-ecobank"
+    },
+    {
+        "id": 23,
+        "username": "eTranzact",
+        "resellerUserId": "0013119",
+        "resellerUsername": "Etrans_Resl_eTranzact"
+    },
+    {
+        "id": 24,
+        "username": "eTranzact*",
+        "resellerUserId": "0036727",
+        "resellerUsername": "Resl_Nalo_eTranzact"
+    },
+    {
+        "id": 25,
+        "username": "na1-ubaghana",
+        "resellerUserId": "12347",
+        "resellerUsername": "na1-ubaghana"
+    },
+    {
+        "id": 26,
+        "username": "PerezChapel",
+        "resellerUserId": "0035238",
+        "resellerUsername": "Resl_Nalo_perezchapelpatasi"
+    },
+    {
+        "id": 27,
+        "username": "hfc",
+        "resellerUserId": "0071555",
+        "resellerUsername": "RepBank_Resl_hfc"
+    },
+    {
+        "id": 28,
+        "username": "hfcOTP",
+        "resellerUserId": "0078947",
+        "resellerUsername": "RepBank_Resl_hfcOTP"
+    },
+    {
+        "id": 29,
+        "username": "gtbankGens",
+        "resellerUserId": "0879671",
+        "resellerUsername": "Resl_GTBank_gtbankGens"
+    },
+    {
+        "id": 30,
+        "username": "gtbankITSec",
+        "resellerUserId": "0879625",
+        "resellerUsername": "Resl_GTBank_gtbankITSec"
+    },
+    {
+        "id": 31,
+        "username": "gtbankOtp",
+        "resellerUserId": "0879543",
+        "resellerUsername": "Resl_GTBank_gtbankOtp"
+    },
+    {
+        "id": 32,
+        "username": "gtbankOTPServices",
+        "resellerUserId": "0879670",
+        "resellerUsername": "Resl_GTBank_gtbankOTPServices"
+    }
+]
