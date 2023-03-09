@@ -6,10 +6,12 @@ import { useParams } from "react-router-dom";
 import { GetS3ClientData, GetS9ClientData } from "../service/service";
 import { Grid } from "@mui/material";
 import Notification from "./Notification";
+import DataLoading from "./DataLoading";
 
 function MainPageComponent() {
   const { monthName, dateToSend } = useDataContext();
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
 
   const handleClose = (_event, reason) => {
@@ -37,6 +39,8 @@ function MainPageComponent() {
     ) {
       return;
     }
+    setLoading(true);
+
     const [s3Data, s9Data] = await Promise.allSettled([
       GetS3ClientData(resellerUsername, dateToSend),
       GetS9ClientData(resellerUserId, dateToSend),
@@ -69,6 +73,7 @@ function MainPageComponent() {
         setOpen(true);
       }
     }
+    setLoading(false);
   }, [resellerUsername, resellerUserId, dateToSend]);
 
   useEffect(() => {
@@ -78,35 +83,48 @@ function MainPageComponent() {
   return (
     <div id="detail">
       <h1>{monthName}</h1>
-      <h2>{totalSv3PageCount}</h2>
-      <Grid
-        container
-        spacing={5}
-        justifyContent="space-between"
-        marginBottom={10}
-      >
-        <Grid item md={6}>
-          <DoughnutChart data={sv3Data} />
-        </Grid>
-        <Grid item md={6}>
-          <DataTable data={sv3Data} />
-        </Grid>
-      </Grid>
+      {loading ? (
+        <DataLoading size={50} server={"telco"} />
+      ) : (
+        <>
+          <h2>{totalSv3PageCount}</h2>
+          <Grid
+            container
+            spacing={5}
+            justifyContent="space-between"
+            marginBottom={10}
+          >
+            <Grid item md={6}>
+              <DoughnutChart data={sv3Data} />
+            </Grid>
+            <Grid item md={6}>
+              <DataTable data={sv3Data} />
+            </Grid>
+          </Grid>
+        </>
+      )}
 
-      <h2>{totalSv9PageCount}</h2>
-      <Grid
-        container
-        spacing={5}
-        justifyContent="space-between"
-        marginBottom={10}
-      >
-        <Grid item md={6}>
-          <DoughnutChart data={sv9Data} />
-        </Grid>
-        <Grid item md={6}>
-          <DataTable data={sv9Data} />
-        </Grid>
-      </Grid>
+      {loading ? (
+        <DataLoading size={50} server={"portal"} />
+      ) : (
+        <>
+          <h2>{totalSv9PageCount}</h2>
+
+          <Grid
+            container
+            spacing={5}
+            justifyContent="space-between"
+            marginBottom={10}
+          >
+            <Grid item md={6}>
+              <DoughnutChart data={sv9Data} />
+            </Grid>
+            <Grid item md={6}>
+              <DataTable data={sv9Data} />
+            </Grid>
+          </Grid>
+        </>
+      )}
       <Notification
         severity="error"
         message={notificationMessage}

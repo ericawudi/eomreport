@@ -77,7 +77,7 @@ export const GetS9ClientData = async (username, date) => {
 
   const config = {
     method: "post",
-    url: "https://logs.nalosolutions.com/netreport/test.php",
+    url: "https://logs.nalosolutions.com/netreport/index.php",
     headers: {
       "Content-Type": "application/json",
     },

@@ -6,20 +6,23 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
-import { Paper, Typography } from "@mui/material";
+import { CircularProgress, Paper, Typography } from "@mui/material";
 import Copyright from "./Copyright";
 import { useForm } from "react-hook-form";
 import Notification from "./Notification";
 import { Login } from "../service/service";
 import { useNavigate } from "react-router-dom";
+import { green } from "@mui/material/colors";
 
 function LoginForm() {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
   const navigate = useNavigate();
+
   const onSubmit = async (data, _event) => {
     const { username, password } = data;
-
+    setLoading(true);
     const response = await Login(username, password);
     if (response.data?.status === 200) {
       navigate("/");
@@ -27,6 +30,7 @@ function LoginForm() {
       setNotificationMessage(response.data.message);
       setOpen(true);
     }
+    setLoading(false);
   };
 
   const handleClose = (_event, reason) => {
@@ -134,9 +138,21 @@ function LoginForm() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={loading}
             >
               Login
             </Button>
+            {loading && (
+              <CircularProgress
+                size={24}
+                sx={{
+                  color: green[500],
+                  position: "absolute",
+                  top: "54.7%",
+                  left: "49%",
+                }}
+              />
+            )}
             <Copyright sx={{ mt: 8, mb: 4 }} />
           </Box>
         </Box>

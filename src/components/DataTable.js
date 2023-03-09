@@ -1,5 +1,5 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { convertToTableData } from "../service/helper";
 
 const columns = [
@@ -31,21 +31,22 @@ const columns = [
 ];
 
 function DataTable({ data }) {
-  const [rows, setRows] = useState(data);
+  const [rows /*setRows*/] = useState(convertToTableData(data));
   const [rowNumber, setRowNumber] = useState(6);
-  useEffect(() => {
-    setRows(convertToTableData(data));
-  }, [data]);
+
+  // useEffect(() => {
+  //   setRows(convertToTableData(data));
+  // }, [data]); //use memo to implement this. It won't work the way you want 'cos it's an obj
 
   return (
     <div style={{ height: 420 }}>
       <DataGrid
         rows={rows}
+        // getRowId={(row) => row.network}
         columns={columns}
         pageSize={rowNumber}
         rowsPerPageOptions={[5, 6, 10]}
         disableSelectionOnClick
-        components={{}}
         onPageSizeChange={(newNumber) => setRowNumber(newNumber)}
       />
     </div>

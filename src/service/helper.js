@@ -1,8 +1,7 @@
 export function convertToTableData(data) {
-  console.log({ data });
   const result = data.map((element, index) => {
     const itemObj = {
-      id: index,
+      id: index++,
       network: element.network.toUpperCase(),
       smsCount: element?.count,
       pageCount: element.page_count,

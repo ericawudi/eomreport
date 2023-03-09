@@ -19,7 +19,7 @@ function DoughnutChart({ data }) {
     labels: ["MTN", "AIRTELTIGO", "VODAFONE", "FOREIGN", "EXPRESSO", "GLO"],
     datasets: [
       {
-        label: "# of Votes",
+        label: "Total Page Count",
         data: rows,
         backgroundColor: [
           "rgba(255, 99, 132, 1)",
