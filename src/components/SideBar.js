@@ -32,7 +32,7 @@ function SideBar() {
           <NavLink
             target="_blank"
             rel="noopener noreferrer"
-            to={"https:/eaodesigns.com"}
+            to={"https://eaodesigns.com"}
           >
             {` eaodesigns`}
           </NavLink>

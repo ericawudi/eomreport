@@ -13,7 +13,7 @@ function Copyright(props) {
       <Link
         target="_blank"
         rel="noopener noreferrer"
-        to={"https:/eaodesigns.com"}
+        to={"https://eaodesigns.com"}
       >
         EAO Designs
       </Link>{" "}
