@@ -2,6 +2,7 @@
   "name": "eomreport",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://5.9.79.123/eaodesigns/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
